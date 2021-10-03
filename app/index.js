@@ -5,18 +5,18 @@ const register = promClient.register;
 let app = express();
 
 const contadorRequisicoes = new promClient.Counter({
-    name: 'aula_requests_total',
+    name: 'requests_total',
     help: 'Contador de requests',
     labelNames: ['statusCode']
 });
 
 const usuariosOnline = new promClient.Gauge({
-    name: 'aula_usuarios_logados_total',
+    name: 'usuarios_logados_total',
     help: 'Número de usuários logados no momento'
 });
 
 const tempoDeResposta = new promClient.Histogram({
-    name: 'aula_request_duration_seconds',
+    name: 'request_duration_seconds',
     help: 'Tempo de resposta da API'
 });
 
