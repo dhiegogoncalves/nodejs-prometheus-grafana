@@ -7,7 +7,7 @@ services:
       context: ./app
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - 8080:8080
     networks:
       - node-prometheus-grafana
 
@@ -28,8 +28,25 @@ services:
       - node-prometheus-grafana
     restart: always
 
+  grafana:
+    image: grafana/grafana
+    user: "472"
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    depends_on:
+      - prometheus
+    networks:
+      - node-prometheus-grafana
+    restart: always
+
 volumes:
   prometheus-data:
+  grafana-data:
 
 networks:
   node-prometheus-grafana:
