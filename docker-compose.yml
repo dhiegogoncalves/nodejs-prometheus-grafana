@@ -29,6 +29,7 @@ services:
     restart: always
 
   grafana:
+    container_name: grafana
     image: grafana/grafana
     user: "472"
     ports:
